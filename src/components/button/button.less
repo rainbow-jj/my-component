@@ -1,0 +1,32 @@
+@import './mixin.less';
+
+// 按钮通用
+.btn {
+    position: relative;
+    display: inline-block;
+    font-weight: 400px;
+    white-space: nowrap;
+    color: grey;
+    text-align: center;
+    vertical-align: middle;
+    background-image: none;
+    &.disabled,
+    &[disabled] {
+        cursor: not-allowed;
+        opacity: .65;
+        box-shadow: none;
+        > * {
+        pointer-events: none;
+    }
+  }
+}
+// 大小按钮的padding, 字体， 框角度
+.btn-lg {
+    .button-size(.5rem, 1rem, .5rem, .5rem);
+}
+.btn-sm {
+    .button-size(.25rem, .5rem, .25rem, .25rem);
+}
+.btn-primary {
+    .button-style(#0d6efd, #0d6efd, #fff)
+}

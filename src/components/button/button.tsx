@@ -9,7 +9,7 @@ export type ButtonHTMLType = 'submit'| 'button' | 'reset'
 
 export interface BaseButtonProps {
     className?: string; 
-    type?: ButtonType;
+    btnType?: ButtonType;
     size?: ButtonSize;
     disabled?: boolean; // 设置button的禁用
     danger?: boolean;
@@ -19,13 +19,14 @@ export interface BaseButtonProps {
     children:React.ReactNode;
 
 }
-type AnchorButtonProps = BaseButtonProps & React.AnchorHTMLAttributes<HTMLElement>
-type NativeButtonProps = BaseButtonProps & React.ButtonHTMLAttributes<HTMLElement>
+type AnchorButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLElement>
+type NativeButtonProps = BaseButtonProps & ButtonHTMLAttributes<HTMLElement>
 export type ButtonProps = Partial<AnchorButtonProps & NativeButtonProps>
 
-export const Button:FC<ButtonProps> = (props) => {
+export const Button: FC<ButtonProps> = (props) => {
+// export const Button = (props: ButtonProps) => {
     const {
-        type,
+        btnType,
         className,
         disabled,
         size,
@@ -36,25 +37,34 @@ export const Button:FC<ButtonProps> = (props) => {
     } = props
     const classes = classNames('btn', className, 
     {
-        [`btn-${type}`]: type,
+        [`btn-${btnType}`]: btnType,
         [`btn-${size}`]: size,
-        'disabled': (type === 'link') && disabled
+        'disabled': (btnType === 'link') && disabled
     })
-    if (type === 'link' && href) {
+    // 如果是 是否 是link  
+    if (btnType === 'link' && href) {
         return (
            <a 
             className={classes}
-            disabled={disabled}
+            {...rest}
             href={href}
            >{children}</a>
         )
+    } else {
+        return (
+        <button
+            className={classes}
+            disabled={disabled}
+            {...rest}
+        >{children}</button>
+        )
     }
-
+    
 }
 
 Button.defaultProps = {
     disabled: false,
-    type: 'default'
+    btnType: 'default'
 }
 
 export default Button;
