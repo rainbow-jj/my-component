@@ -10,6 +10,7 @@ export type ButtonHTMLType = 'submit'| 'button' | 'reset'
 export interface BaseButtonProps {
     className?: string; 
     btnType?: ButtonType;
+    shape?: ButtonShape ;
     size?: ButtonSize;
     disabled?: boolean; // 设置button的禁用
     danger?: boolean;
@@ -30,6 +31,7 @@ export const Button: FC<ButtonProps> = (props) => {
         className,
         disabled,
         size,
+        shape,
         children,
         href,
         ...rest
@@ -39,6 +41,7 @@ export const Button: FC<ButtonProps> = (props) => {
     {
         [`btn-${btnType}`]: btnType,
         [`btn-${size}`]: size,
+        [`btn-${shape}`]: shape,
         'disabled': (btnType === 'link') && disabled
     })
     // 如果是 是否 是link  

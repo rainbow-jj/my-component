@@ -1,4 +1,5 @@
 @import './mixin.less';
+@import './default.less';
 
 // 按钮通用
 .btn {
@@ -29,4 +30,38 @@
 }
 .btn-primary {
     .button-style(#0d6efd, #0d6efd, #fff)
+}
+.btn-danger {
+    .button-style(#dc3545, #dc3545, #fff)
+}
+.btn-default {
+    .button-style(#fff, #ced4da, #212529, #fff, #0d6efd, #0d6efd)
+}
+
+// round button
+.btn-round {
+    .button-size(.5rem, 1rem / 2, .5rem, 50%);
+}
+.btn-link {
+    font-weight: 400;
+    color: #0d6efd;
+    text-decoration: none;
+    box-shadow: none;
+
+    &:hover {
+        color: draken(#0d6efd, 15%);
+        text-decoration: underline;
+    }
+
+    &:focus,
+    &.focus {
+        text-decoration: underline;
+        box-shadow: none;
+    }
+
+    &:disabled,
+    &.disabled {
+        color:#6c757d;
+        pointer-events: none;
+    }
 }

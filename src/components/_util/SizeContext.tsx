@@ -3,6 +3,7 @@ import * as React from 'react';
 
 export type SizeType = 'small' | 'middle' | 'large' | undefined;
 
+// React.createContext 的返回值 当前的context值由上层组件中距离最近的 <SizeContext.Provider> 的value prop决定
 const SizeContext = React.createContext<SizeType>(undefined);
 
 export interface SizeContextProps {
