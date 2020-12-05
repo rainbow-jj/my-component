@@ -12,7 +12,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-export { default as Button } from './components/button'
+// export { default as Button } from './components/button'
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -3,7 +3,7 @@ import * as React from 'react';
 import classNames from 'classnames';
 
 export type ButtonSize = 'lg' | 'sm' 
-export type ButtonType = 'primary' | 'default' | 'ghost' | 'link' | 'dashed'
+export type ButtonType = 'primary' | 'default' | 'ghost' | 'link' | 'dashed' | 'danger'
 export type ButtonShape = 'circle' | 'round'
 export type ButtonHTMLType = 'submit'| 'button' | 'reset'
 
@@ -13,7 +13,6 @@ export interface BaseButtonProps {
     shape?: ButtonShape ;
     size?: ButtonSize;
     disabled?: boolean; // 设置button的禁用
-    danger?: boolean;
     block?: boolean;
     ghost?: boolean;
     href?: string;
@@ -43,6 +42,7 @@ export const Button: FC<ButtonProps> = (props) => {
         [`btn-${size}`]: size,
         [`btn-${shape}`]: shape,
         'disabled': (btnType === 'link') && disabled
+
     })
     // 如果是 是否 是link  
     if (btnType === 'link' && href) {
@@ -67,7 +67,7 @@ export const Button: FC<ButtonProps> = (props) => {
 
 Button.defaultProps = {
     disabled: false,
-    btnType: 'default'
+    btnType: 'default',
 }
 
 export default Button;
