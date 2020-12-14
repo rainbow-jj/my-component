@@ -1,0 +1,24 @@
+---
+name: Button
+route: /
+---
+
+import { Playground, Props } from 'docz'
+import Button from './button/index.tsx'
+
+# Button
+
+<Props of={Button} />
+
+## Basic usage
+
+<Playground>
+    <Button className="danger">Hello</Button>
+    <Button  disabled>Disabled Button</Button>
+    <Button btnType='primary' size='lg'>Large Primary</Button>
+    <Button size='sm'>Small Button</Button>
+    <Button btnType='danger'>Danger Button</Button>
+    <Button href="http://www.baidu.com" target="_blank" btnType='link'>Baidu Link</Button>
+    <Button  href="http://www.baidu.com" disabled>Disabled Link</Button>
+    <Button btnType="primary" shape="circle">Li</Button>
+</Playground>

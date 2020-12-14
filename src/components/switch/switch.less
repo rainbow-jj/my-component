@@ -1,0 +1,44 @@
+.switch {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  min-width: 40px;
+  height: 20px;
+  background-color:fade(#000, 25%);
+  border: 0;
+  vertical-align: middle;
+  border-radius: 100px;
+  cursor: pointer;
+  user-select: none;
+    * {
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+    &-small {
+        min-width: 28px;
+        height: 16px;
+        line-height: 16px;
+    }
+  
+}
+
+.rc-switch{
+    &-checked:focus {
+        outline: 0;
+        box-shadow: 0 0 0 2px fade(fade(#000, 25%), 10%);
+    }
+    &-checked {
+    background-color: #1890ff;
+    }
+    &-disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+}
+ .rc-switch-inner {
+    display: block;
+    margin: 0 4px 0 22px;
+    color: #fff;
+    font-size: 12px;
+    transition: margin 0.2s;
+ }
+}
