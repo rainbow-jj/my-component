@@ -1,0 +1,33 @@
+---
+name: Menu
+route: /menu
+---
+
+import { Playground, Props } from 'docz'
+import Menu from './menu/menu.tsx'
+import MenuItem from './menu/menuItem.tsx'
+import SubMenu from './menu/submenu.tsx'
+
+# Menu
+
+<Props of={Menu, MenuItem}/>
+
+## Basic usage
+
+<Playground>
+   <Menu defaultIndex='0' mode="horizontal" >
+    <MenuItem >
+      cool link
+    </MenuItem>
+    <MenuItem disabled>
+      disabled
+    </MenuItem> 
+    <MenuItem>
+      cool link 2
+      <SubMenu title='item2'>
+        <MenuItem>children1</MenuItem>
+        <MenuItem>children2</MenuItem> 
+      </SubMenu>
+    </MenuItem> 
+  </Menu>
+</Playground>

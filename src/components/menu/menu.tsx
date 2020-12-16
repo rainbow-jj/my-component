@@ -2,7 +2,6 @@ import React, { FC, createContext, CSSProperties, useState } from 'react';
 import classNames from 'classnames';
 import { MenuItemProps } from './menuItem';
 
-
 // 兼容不同的模式 mode API
 type MenuMode = 'horizontal' | 'vertical' | 'inline'
 type DirectionType = 'ltr' | 'rtl' | undefined;
@@ -49,7 +48,8 @@ export const Menu: FC<MenuProps> = (props) => {
         'menu-vertical': mode === 'vertical', 
         'menu-inline': mode === 'inline',
         'menu-ltr': direction === 'ltr',
-        'menu-rtl': direction === 'rtl'
+        'menu-rtl': direction === 'rtl',
+        'menu-inline-collapsed': inlineCollapsed,
     })
     
     const handleClick = (index: string) => {
@@ -94,6 +94,7 @@ export const Menu: FC<MenuProps> = (props) => {
 Menu.defaultProps = {
     defaultIndex: '0',
     mode:'horizontal',
+    direction:'ltr',
     defaultOpenSubMenus:[],
 }
 
