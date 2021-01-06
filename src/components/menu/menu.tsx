@@ -4,7 +4,6 @@ import { MenuItemProps } from './menuItem';
 
 // 兼容不同的模式 mode API
 type MenuMode = 'horizontal' | 'vertical' | 'inline'
-type DirectionType = 'ltr' | 'rtl' | undefined;
 
 // 属性
 export interface MenuProps {
@@ -13,14 +12,13 @@ export interface MenuProps {
     className?: string;
     // 菜单类型，横向还是纵向
     mode?: MenuMode;
-    direction?: DirectionType;
     // 定义样式
     style?: CSSProperties;
     // 事件，选中的是，selectedIndex下标字符串类型
     onSelect?: (selectedIndex: string) => void;
     // 设置子菜单的默认打开，只在纵向模式下生效
     defaultOpenSubMenus?: string[];
-    inlineCollapsed?: boolean;
+    inlineCollapsed?: boolean; 
 }
 
 //
@@ -28,7 +26,6 @@ interface MenuContextProps {
     index?: string;
     onSelect?: (selectedIndex: string) => void;
     inlineCollapsed?: boolean; 
-    direction?: DirectionType;
     mode?: MenuMode;
     defaultOpenSubMenus?: string[];
 }
@@ -39,7 +36,7 @@ export const MenuContext = createContext<MenuContextProps>({
 
 export const Menu: FC<MenuProps> = (props) => {
     const { className, mode, style, children, defaultIndex, 
-        onSelect, defaultOpenSubMenus, inlineCollapsed, direction } = props
+        onSelect, defaultOpenSubMenus, inlineCollapsed } = props
 
     const [ currentActive, setActive] = useState(defaultIndex)
 
@@ -47,23 +44,21 @@ export const Menu: FC<MenuProps> = (props) => {
         'menu-horizontal': mode === 'horizontal',
         'menu-vertical': mode === 'vertical', 
         'menu-inline': mode === 'inline',
-        'menu-ltr': direction === 'ltr',
-        'menu-rtl': direction === 'rtl',
-        'menu-inline-collapsed': inlineCollapsed,
+        // 'menu-inline-collapsed': inlineCollapsed,
     })
     
+    // 点击外层菜单按钮，index 获取到的下标
     const handleClick = (index: string) => {
-        setActive(index)
+        setActive(index)  // setActive(index) undefined
         if (onSelect) {
             onSelect(index)
-        }
+        } 
     }
 
     const contextType: MenuContextProps = {
         index: currentActive ? currentActive : '0', // 设置下标为currentActive, 或者 0
         onSelect: handleClick,
         mode,
-        direction,
         defaultOpenSubMenus,
     }
 
@@ -76,6 +71,7 @@ export const Menu: FC<MenuProps> = (props) => {
             const { displayName } = childElement.type
             // 通过 childElement 的 type来 判断是否是menu组件，是的话根据下标返回一个新的子组件
             if (displayName === 'MenuItem' || displayName === 'SubMenu') {
+                // console.log('childElement', childElement)
                 return React.cloneElement(childElement, {
                     index: index.toString()
                 })
@@ -94,8 +90,7 @@ export const Menu: FC<MenuProps> = (props) => {
 Menu.defaultProps = {
     defaultIndex: '0',
     mode:'horizontal',
-    direction:'ltr',
-    defaultOpenSubMenus:[],
+    defaultOpenSubMenus: [],
 }
 
 export default Menu;

@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import { MenuContext, MenuProps } from './menu'
 import { MenuItem } from 'docz'
 import { MenuItemProps } from './menuItem'
+import Transition from '../_util/transition'
 
 // 包含的属性
 export interface SubMenuProps {
@@ -19,10 +20,10 @@ const SubMenu: FC<SubMenuProps> = (props) => {
     const openedSubMenus = context.defaultOpenSubMenus as Array<string> //获取 defaultOpenSubMenus 
     const isOpend = (index && context.mode === 'vertical') ? openedSubMenus.includes(index) : false 
     const [ menuOpen, setOpen ] = useState(isOpend)
-    const classes = classNames('menu-item submenu-item', className, {
-        'is-active': context.index === index,
-        'is-opened': menuOpen, //menuOpen就是设置的打开的那个菜单
-        'is-vertical': context.mode === 'vertical',
+    const classes = classNames('menu-item menu-submenu', className, {
+        'active': context.index === index,
+        'opened': menuOpen,  //menuOpen就是设置的打开的那个菜单
+        'vertical': context.mode === 'vertical',
     })
     const handleClick = (e: React.MouseEvent) => {
         console.log('isOped',index)
@@ -41,12 +42,13 @@ const SubMenu: FC<SubMenuProps> = (props) => {
     const clickEvents = context.mode === 'vertical' ? { onClick: handleClick } : {}
     const hoverEvents = context.mode !== 'vertical' ? { 
         onMouseEnter: (e: React.MouseEvent) => { handleMouse(e, true)},
-        onmouseLeave: (e: React.MouseEvent) => { handleMouse(e, false)}
+        onMouseLeave: (e: React.MouseEvent) => { handleMouse(e, false)}
     } : {}
     
     // 定义子试图 
     const renderChildren = () => {
-        const subMenuClasses = classNames('menu-submenu', {
+        const subMenuClasses = classNames('submenu-item', {
+            // 
             'menu-opened': menuOpen
         })
         // 子组件
@@ -61,19 +63,28 @@ const SubMenu: FC<SubMenuProps> = (props) => {
             }
         })
         return (
-            <ul className={subMenuClasses}>
-                {childrenComponent}
-            </ul>
+            <Transition
+                in={menuOpen}
+                timeout={300}
+                animation="in-top"
+            >
+                <ul className={subMenuClasses}>
+                    {childrenComponent}
+                </ul>
+            </Transition>
         )
     }
 
     return (
         <li key={index} className={classes} {...hoverEvents}>
-            <div className="submenu-title" {...clickEvents}>{title}</div>
+            <div className="submenu-title" {...clickEvents}>
+                {title}
+            </div>
+            {renderChildren()}
         </li>
     )
-
 }
 
+SubMenu.displayName = 'SubMenu'
 export default SubMenu
 

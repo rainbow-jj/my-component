@@ -20,8 +20,8 @@ const MenuItem: React.FC<MenuItemProps>  = (props) => {
     // 单个Item点击后的事件
     const handleClick = () => {
         if (context.onSelect && !disabled && (typeof index === 'string')) {
-            context.onSelect(index)
-        }
+            context.onSelect(index) // 点击后，调用 context的 onSelect() 方法把index传进去
+        }   
     }
     return (
     <li

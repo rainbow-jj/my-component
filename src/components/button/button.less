@@ -7,47 +7,75 @@
     display: inline-block;
     font-weight: 400px;
     white-space: nowrap;
-    color: grey;
+    background-color: #fff;
+    color: rgba(0,0,0,.85);
     text-align: center;
     vertical-align: middle;
     background-image: none;
-    &.disabled,
+    border: 1px solid #d9d9d9;
+    &:disabled,
     &[disabled] {
+        background-color: #f5f5f5 !important;
+        color: rgba(0,0,0,.25) !important;
+        padding: .325rem .625rem;
         cursor: not-allowed;
         opacity: .65;
         box-shadow: none;
         > * {
         pointer-events: none;
+        }  
     }
-  }
 }
 // 大小按钮的padding, 字体， 框角度
 .btn-lg {
-    .button-size(.5rem, 1rem, .5rem, .5rem);
+    .button-size(.6rem, .9rem, .6rem, .6rem) ;
+    .button-style(#fff, 1px solid #d9d9d9, rgba(0,0,0,.85), #fff, #0d6efd, #0d6efd);
+}
+.btn-mle {
+    .button-style(#fff, 1px solid #d9d9d9, rgba(0,0,0,.85), #fff, #0d6efd, #0d6efd);
+    .button-size(.4rem, .6rem, .4rem, .4rem);
 }
 .btn-sm {
-    .button-size(.25rem, .5rem, .25rem, .25rem);
+    .button-style(#fff, 1px solid #d9d9d9, rgba(0,0,0,.85), #fff, #0d6efd, #0d6efd);
+    .button-size(.2rem, .3rem, .2rem, .2rem);
 }
 .btn-primary {
+    .button-size(.325rem, .625rem, .35rem, 0);
     .button-style(#0d6efd, #0d6efd, #fff)
 }
 .btn-danger {
+    .button-size(.325rem, .625rem, .35rem, 0);
     .button-style(#dc3545, #dc3545, #fff)
 }
 .btn-default {
-    .button-style(#fff, #ced4da, #212529, #fff, #0d6efd, #0d6efd)
+    .button-style(#fff, 1px solid #d9d9d9, rgba(0,0,0,.85), #fff, #0d6efd, #0d6efd);
+    .button-size(.325rem, .625rem, .35rem, 0);
 }
-
+.btn-ghost {
+    .button-size(.325rem, .625rem, .35rem, 0);
+    color: #d9d9d9;
+    border-color: #d9d9d9;
+    background-position-x: 0;
+    background-position-y: 0;
+}
+.btn-dashed {
+    .button-size(.325rem, .625rem, .35rem, 0);
+    color: rgba(0,0,0,.85);
+    border-color: #d9d9d9;
+    border-style: dashed !important; 
+}
 // round button
 .btn-round {
     .button-size(.5rem, 1rem / 2, .5rem, 50%);
 }
+
 .btn-link {
+    .button-size(.325rem, .625rem, .35rem, 0);
     font-weight: 400;
     color: #0d6efd;
     text-decoration: none;
     box-shadow: none;
-
+    border: none;
     &:hover {
         color: draken(#0d6efd, 15%);
         text-decoration: underline;
@@ -58,10 +86,5 @@
         text-decoration: underline;
         box-shadow: none;
     }
-
-    &:disabled,
-    &.disabled {
-        color:#6c757d;
-        pointer-events: none;
-    }
+ 
 }

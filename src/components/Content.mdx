@@ -6,19 +6,35 @@ route: /
 import { Playground, Props } from 'docz'
 import Button from './button/index.tsx'
 
+
 # Button
 
 <Props of={Button} />
 
-## Basic usage
-
+##  常规按钮
 <Playground>
-    <Button className="danger">Hello</Button>
+    <Button btnType="default">Default</Button> 
     <Button  disabled>Disabled Button</Button>
-    <Button btnType='primary' size='lg'>Large Primary</Button>
-    <Button size='sm'>Small Button</Button>
+</Playground>
+
+## 尺寸按钮
+<Playground>
+    <Button size='lg'>Large</Button>
+    <Button size='mle'>Middle</Button>
+    <Button size='sm'>Small</Button>
+</Playground>
+
+##  类型按钮
+<Playground>
+    <Button btnType='primary'>Primary Button</Button>
     <Button btnType='danger'>Danger Button</Button>
-    <Button href="http://www.baidu.com" target="_blank" btnType='link'>Baidu Link</Button>
-    <Button  href="http://www.baidu.com" disabled>Disabled Link</Button>
-    <Button btnType="primary" shape="circle">Li</Button>
+    <Button href="http://www.baidu.com" target="_blank" btnType='link' >Baidu Link</Button>
+    <Button btnType="ghost">Ghost</Button>
+    <Button btnType="dashed">dashed</Button>
+</Playground>
+
+## 图标按钮
+<Playground>
+    <Button btnType="primary" shape="round" icon="icon-xiazai3"></Button>
+    <Button shape="round" icon="icon-icon-"></Button>
 </Playground>

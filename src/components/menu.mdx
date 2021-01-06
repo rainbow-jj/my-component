@@ -4,30 +4,35 @@ route: /menu
 ---
 
 import { Playground, Props } from 'docz'
-import Menu from './menu/menu.tsx'
-import MenuItem from './menu/menuItem.tsx'
-import SubMenu from './menu/submenu.tsx'
+import TotalMenu from './menu/index.tsx'
+// import Menu from './menu/menu.tsx'
+// import MenuItem from './menu/menuItem.tsx'
+// import SubMenu from './menu/submenu.tsx'
 
 # Menu
 
-<Props of={Menu, MenuItem}/>
+<Props of={TotalMenu}/>
 
-## Basic usage
+## 顶部导航
 
 <Playground>
-   <Menu defaultIndex='0' mode="horizontal" >
-    <MenuItem >
-      cool link
-    </MenuItem>
-    <MenuItem disabled>
-      disabled
-    </MenuItem> 
-    <MenuItem>
-      cool link 2
-      <SubMenu title='item2'>
-        <MenuItem>children1</MenuItem>
-        <MenuItem>children2</MenuItem> 
-      </SubMenu>
-    </MenuItem> 
-  </Menu>
+   <TotalMenu.Menu defaultIndex='0' mode="horizontal">
+    <TotalMenu.Item >
+      Navigation
+    </TotalMenu.Item >
+    <TotalMenu.Item  disabled>
+      disabled Navigation
+    </TotalMenu.Item > 
+    <TotalMenu.Item >
+      Navigation SubMenu
+      <TotalMenu.SubMenu title='item2'>
+        <TotalMenu.Item>children1</TotalMenu.Item>
+        <TotalMenu.Item>children2</TotalMenu.Item> 
+      </TotalMenu.SubMenu>
+      <TotalMenu.SubMenu title='item3'>
+        <TotalMenu.Item>children3</TotalMenu.Item>
+        <TotalMenu.Item>children4</TotalMenu.Item> 
+      </TotalMenu.SubMenu>
+    </TotalMenu.Item > 
+  </TotalMenu.Menu>
 </Playground>
